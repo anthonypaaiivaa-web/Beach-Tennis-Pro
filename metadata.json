@@ -1,0 +1,6 @@
+{
+  "name": "Beach Tennis Pro",
+  "description": "500 treinos práticos de Beach Tennis para desenvolver técnica, movimentação, controle, condicionamento e estratégia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
