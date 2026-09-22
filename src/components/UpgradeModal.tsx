@@ -113,6 +113,12 @@ export function UpgradeModal({
                   </div>
                   <span>Planilha de Treino</span>
                 </li>
+                <li className="flex items-center gap-2.5">
+                  <div className="grid size-4 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
+                    <Check className="size-2.5" strokeWidth={3} />
+                  </div>
+                  <span>15 Drills para Beach Tennis</span>
+                </li>
               </ul>
             </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import {
   ArrowRight,
   Brain,
@@ -17,12 +17,14 @@ import {
   Star,
 } from "lucide-react";
 
-import productMockup from "@/assets/capa-beach-tennis-pro.png";
-import avatarCamila from "@/assets/prova-social-ana.jpg";
-import avatarRafael from "@/assets/prova-social-jogador.jpg";
-import avatarMariana from "@/assets/istockphoto-1706398106-612x612.jpg";
+import productMockup from "@/assets/capa-beach-tennis-pro.webp";
+import avatarCamila from "@/assets/prova-social-ana.webp";
+import avatarRafael from "@/assets/prova-social-jogador.webp";
+import avatarMariana from "@/assets/istockphoto-1706398106-612x612.webp";
 import { SalesNotification } from "@/components/SalesNotification";
-import { UpgradeModal } from "@/components/UpgradeModal";
+const UpgradeModal = lazy(() =>
+  import("@/components/UpgradeModal").then((m) => ({ default: m.UpgradeModal }))
+);
 import {
   Accordion,
   AccordionContent,
@@ -63,13 +65,19 @@ const bonuses = [
     title: "Planilha de Treino para Beach Tennis",
     text: "Uma forma simples e organizada de estruturar os treinos e acompanhar a rotina de evolução.",
   },
+  {
+    number: "04",
+    icon: Zap,
+    title: "15 Drills para Beach Tennis",
+    text: "Drills dinâmicos e focados para acelerar seus reflexos, precisão, consistência e velocidade de reação na areia.",
+  },
 ];
 
 const faqs = [
   ["O Beach Tennis Pro é para iniciantes?", "Sim. O material possui exercícios que podem ser utilizados desde níveis mais básicos até treinos mais avançados."],
   ["Como vou receber o material?", "Após a confirmação do pagamento, você receberá as instruções para acessar o conteúdo digital."],
   ["O produto é físico?", "Não. O Beach Tennis Pro é um produto 100% digital."],
-  ["Os bônus estão inclusos nas duas ofertas?", "Não. As +20 Vídeo Aulas, os 227 Exercícios de Musculação e a Planilha de Treino estão disponíveis na oferta completa de R$ 9,90."],
+  ["Os bônus estão inclusos nas duas ofertas?", "Não. As +20 Vídeo Aulas, os 227 Exercícios de Musculação, a Planilha de Treino e os 15 Drills estão disponíveis na oferta completa de R$ 9,90."],
   ["Posso acessar pelo celular?", "Sim. O conteúdo poderá ser acessado em dispositivos compatíveis com os formatos disponibilizados."],
   ["Existe garantia?", "Sim. A compra possui garantia de 7 dias."],
 ];
@@ -109,12 +117,14 @@ export default function App() {
   return (
     <main className="overflow-hidden bg-background text-foreground">
       <SalesNotification />
-      <UpgradeModal
-        isOpen={isUpgradeModalOpen}
-        onClose={() => setIsUpgradeModalOpen(false)}
-        upgradeCheckoutUrl={CHECKOUT_UPGRADE}
-        essentialCheckoutUrl={CHECKOUT_ESSENCIAL}
-      />
+      <Suspense fallback={null}>
+        <UpgradeModal
+          isOpen={isUpgradeModalOpen}
+          onClose={() => setIsUpgradeModalOpen(false)}
+          upgradeCheckoutUrl={CHECKOUT_UPGRADE}
+          essentialCheckoutUrl={CHECKOUT_ESSENCIAL}
+        />
+      </Suspense>
 
       <div className="bg-primary px-4 py-2.5 text-center text-xs font-extrabold uppercase text-primary-foreground sm:text-sm">
         Oferta somente até hoje
@@ -131,7 +141,16 @@ export default function App() {
 
           <div className="relative mx-auto mt-10 w-full max-w-lg">
             <div className="absolute -inset-3 rotate-2 rounded-lg border border-primary/20 bg-primary/5" aria-hidden="true" />
-            <img src={productMockup} alt="Beach Tennis Pro — 500 Treinos em formato digital" width={1254} height={1254} className="relative aspect-square w-full rounded-lg object-cover shadow-2xl" />
+            <img
+              src={productMockup}
+              alt="Beach Tennis Pro — 500 Treinos em formato digital"
+              width={900}
+              height={900}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              className="relative aspect-square w-full rounded-lg object-cover shadow-2xl"
+            />
           </div>
 
           <div className="mt-8 flex justify-center">
@@ -167,7 +186,7 @@ export default function App() {
               Bônus exclusivos
             </h2>
           </div>
-          <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {bonuses.map(({ number, icon: Icon, title, text }) => (
               <article key={number} className="bonus-card text-center">
                 <div className="flex items-center justify-between">
@@ -216,7 +235,20 @@ export default function App() {
               <p className="text-xs font-extrabold uppercase text-primary">Oferta completa — mais vantajosa</p>
               <h3 className="mt-3 font-display text-2xl font-black uppercase">Beach Tennis Pro + Bônus</h3>
               <ul className="mx-auto mt-7 max-w-sm space-y-3 text-left text-sm">
-                {["500 Treinos de Beach Tennis", "+20 Vídeo Aulas de Beach Tennis", "227 Exercícios de Musculação para Beach Tennis", "Planilha de Treino para Beach Tennis", "Material digital", "Acesso imediato"].map((item) => <li key={item} className="flex gap-3"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" /><span>{item}</span></li>)}
+                {[
+                  "500 Treinos de Beach Tennis",
+                  "+20 Vídeo Aulas de Beach Tennis",
+                  "227 Exercícios de Musculação para Beach Tennis",
+                  "Planilha de Treino para Beach Tennis",
+                  "15 Drills para Beach Tennis",
+                  "Material digital",
+                  "Acesso imediato",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
               <div className="mt-auto pt-10 text-center">
                 <p className="text-sm text-muted-foreground">Tudo por apenas:</p>
@@ -250,6 +282,10 @@ export default function App() {
                 <img
                   src={avatar}
                   alt={name}
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  decoding="async"
                   className="size-12 rounded-full object-cover ring-2 ring-primary/40 shrink-0"
                 />
                 <div className="flex-1 min-w-0">
