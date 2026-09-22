@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState } from "react";
 import {
   ArrowRight,
   Brain,
+  CalendarDays,
   Check,
   ChevronRight,
   CircleCheck,
@@ -13,6 +14,7 @@ import {
   Smartphone,
   Target,
   Trophy,
+  Users,
   Zap,
   Star,
 } from "lucide-react";
@@ -55,21 +57,27 @@ const bonuses = [
   },
   {
     number: "02",
-    icon: Dumbbell,
-    title: "227 Exercícios de Musculação para Beach Tennis",
-    text: "Exercícios voltados à preparação física para desenvolver capacidades importantes para a prática do Beach Tennis.",
+    icon: CalendarDays,
+    title: "Desafio Beach Tennis 21 Dias",
+    text: "Cronograma guiado passo a passo para transformar seu jogo, criar consistência e subir de nível em 3 semanas.",
   },
   {
     number: "03",
-    icon: CircleCheck,
-    title: "Planilha de Treino para Beach Tennis",
-    text: "Uma forma simples e organizada de estruturar os treinos e acompanhar a rotina de evolução.",
+    icon: Users,
+    title: "Guia de Estratégias e Táticas para Duplas",
+    text: "Posicionamento inteligente, cobertura de quadra e táticas comprovadas para dominar a partida ao lado da sua dupla.",
   },
   {
     number: "04",
     icon: Zap,
-    title: "15 Drills para Beach Tennis",
-    text: "Drills dinâmicos e focados para acelerar seus reflexos, precisão, consistência e velocidade de reação na areia.",
+    title: "150 Exercícios de Voleio e Smash",
+    text: "Exercícios práticos para acelerar sua reação na rede, antecipar jogadas e definir pontos com precisão e potência.",
+  },
+  {
+    number: "05",
+    icon: CircleCheck,
+    title: "Planilha de Treino para Beach Tennis",
+    text: "Uma forma simples e organizada de estruturar os treinos e acompanhar a rotina de evolução.",
   },
 ];
 
@@ -77,7 +85,7 @@ const faqs = [
   ["O Beach Tennis Pro é para iniciantes?", "Sim. O material possui exercícios que podem ser utilizados desde níveis mais básicos até treinos mais avançados."],
   ["Como vou receber o material?", "Após a confirmação do pagamento, você receberá as instruções para acessar o conteúdo digital."],
   ["O produto é físico?", "Não. O Beach Tennis Pro é um produto 100% digital."],
-  ["Os bônus estão inclusos nas duas ofertas?", "Não. As +20 Vídeo Aulas, os 227 Exercícios de Musculação, a Planilha de Treino e os 15 Drills estão disponíveis na oferta completa de R$ 9,90."],
+  ["Os bônus estão inclusos nas duas ofertas?", "Não. As +20 Vídeo Aulas, o Desafio 21 Dias, o Guia para Duplas, os 150 Exercícios de Voleio e Smash e a Planilha de Treino estão disponíveis exclusivamente na oferta completa de R$ 9,90."],
   ["Posso acessar pelo celular?", "Sim. O conteúdo poderá ser acessado em dispositivos compatíveis com os formatos disponibilizados."],
   ["Existe garantia?", "Sim. A compra possui garantia de 7 dias."],
 ];
@@ -186,7 +194,7 @@ export default function App() {
               Bônus exclusivos
             </h2>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {bonuses.map(({ number, icon: Icon, title, text }) => (
               <article key={number} className="bonus-card text-center">
                 <div className="flex items-center justify-between">
@@ -238,9 +246,10 @@ export default function App() {
                 {[
                   "500 Treinos de Beach Tennis",
                   "+20 Vídeo Aulas de Beach Tennis",
-                  "227 Exercícios de Musculação para Beach Tennis",
+                  "Desafio Beach Tennis 21 Dias",
+                  "Guia de Estratégias e Táticas para Duplas",
+                  "150 Exercícios de Voleio e Smash",
                   "Planilha de Treino para Beach Tennis",
-                  "15 Drills para Beach Tennis",
                   "Material digital",
                   "Acesso imediato",
                 ].map((item) => (

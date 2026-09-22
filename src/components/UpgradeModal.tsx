@@ -54,7 +54,7 @@ export function UpgradeModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ type: "spring", duration: 0.35, bounce: 0.15 }}
-            className="relative z-10 w-full max-w-lg rounded-2xl border-2 border-primary/40 bg-card p-6 sm:p-8 text-card-foreground shadow-2xl overflow-hidden"
+            className="relative z-10 w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-2xl border-2 border-primary/40 bg-card p-6 sm:p-8 text-card-foreground shadow-2xl"
           >
             {/* Close button */}
             <button
@@ -105,19 +105,25 @@ export function UpgradeModal({
                   <div className="grid size-4 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
                     <Check className="size-2.5" strokeWidth={3} />
                   </div>
-                  <span>227 Exercícios de Musculação</span>
+                  <span>Desafio Beach Tennis 21 Dias</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <div className="grid size-4 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
                     <Check className="size-2.5" strokeWidth={3} />
                   </div>
-                  <span>Planilha de Treino</span>
+                  <span>Guia de Estratégias e Táticas para Duplas</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <div className="grid size-4 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
                     <Check className="size-2.5" strokeWidth={3} />
                   </div>
-                  <span>15 Drills para Beach Tennis</span>
+                  <span>150 Exercícios de Voleio e Smash</span>
+                </li>
+                <li className="flex items-center gap-2.5">
+                  <div className="grid size-4 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground">
+                    <Check className="size-2.5" strokeWidth={3} />
+                  </div>
+                  <span>Planilha de Treino para Beach Tennis</span>
                 </li>
               </ul>
             </div>
